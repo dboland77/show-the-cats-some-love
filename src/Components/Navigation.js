@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import {
     Col,
@@ -11,28 +11,20 @@ import {
     NavLink,
     Row } from 'reactstrap';
 
-class Navigation extends Component {
-    constructor(props) {
-        super(props);
+const Navigation = (props) =>  {
+    const [isOpen, setOpen] = useState(false);
     
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false
-        };
+    const toggle = () =>  {
+            setOpen(!isOpen)
       }
-      toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-      }
-    render() {
+
         return (
             <Row>
                 <Col>
                     <Navbar color="light" light expand="md">
                         <NavbarBrand tag={Link} to="/"><img src={window.location.origin + '/cat-cute/images/logo.png'} alt="Cats website logo"/></NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
+                        <NavbarToggler onClick={toggle} />
+                        <Collapse isOpen={isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
                                     <NavLink tag={Link} to="/">Home</NavLink>
@@ -50,6 +42,5 @@ class Navigation extends Component {
             </Row>
         );
     }
-}
 
 export default Navigation;
