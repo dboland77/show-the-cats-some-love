@@ -1,10 +1,9 @@
 /*eslint no-unused-vars: 0*/
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
-import Home from './Home';
-import Rate from './Rate';
-import List from './List';
+import Home from './components/Home';
+import Rate from './components/Rate';
+import List from './components/List';
 import * as API from './Utilities/ApiResult';
 
 class App extends Component {
@@ -22,7 +21,7 @@ class App extends Component {
         };
         this.updateVoteCount = this.updateVoteCount.bind(this);
     }
-    // get the total votes for cute or crap
+    // get the total votes for Up or Down
     getCute(cuteOrCrap) {
         let cute = 0;
         for (let key in this.state.listVotes) {

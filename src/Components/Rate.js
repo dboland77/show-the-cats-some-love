@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
-
-import Heading from './Components/Heading';
-import Carousel from './Components/Carousel';
+import Heading from './Heading';
+import Carousel from './Carousel';
 
 class Rate extends Component {
     render() {

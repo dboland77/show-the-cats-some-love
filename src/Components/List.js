@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-
-import Graph from './Components/Graph';
+import Graph from './Graph';
 
 class List extends Component {
 
