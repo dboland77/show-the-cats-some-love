@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 
-const apiUrl = "https://api.thecatapi.com/v1/votes";
-const apiUploadUrl = "https://api.thecatapi.com/v1/images/upload";
-const apifavouriteUrl = "https://api.thecatapi.com/v1/favourites";
-
+const apiUnfavouriteUrl = "https://api.thecatapi.com/v1/favourites/{favourite_id}";
 
 const ApiResult = (props) => {
   useEffect(() => {

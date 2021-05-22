@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Carousel, CarouselItem, Button } from "reactstrap";
 import Graph from "./Graph";
 
-import * as API from "../Utilities/ApiResult";
+import * as API from "../Utilities/ApiGet";
 
 const style = {
   position: "absolute",

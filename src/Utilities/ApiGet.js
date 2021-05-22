@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const apiUrl = 'https://api.thecatapi.com/v1/favourites?sub_id=imfm4j'
+
+const apiListUrl = 'https://api.thecatapi.com/v1/images'
+const apifavouriteUrl = 'https://api.thecatapi.com/v1/favourites'
 const apiVoteUrl = 'https://api.thecatapi.com/v1/votes'
-const apiGetVoteUrl = 'https://api.thecatapi.com/v1/votes?sub_id=imfm4j'
+
 
 const returnHeaders = () => {
     return (
@@ -18,7 +20,7 @@ export function  getCats(){
     returnHeaders();
 
     // GET THE LIST OF CATS 
-    return axios.get(apiUrl)
+    return axios.get(apiListUrl)
 
     // returns 
     // {
@@ -59,5 +61,5 @@ export function getVotes() {
          },
          We need to use value for vote (1 or 0) and image_id and sub_id to map with the testcats[] list
     */
-    return axios.get(apiGetVoteUrl)
+    return axios.get(apiVoteUrl)
 }

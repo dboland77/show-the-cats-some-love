@@ -1,32 +1,25 @@
 /*eslint no-unused-vars: 0*/
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from './components/Home';
 import Rate from './components/Rate';
 import List from './components/List';
-import * as API from './Utilities/ApiResult';
+import * as API from './Utilities/ApiGet';
 
-class App extends Component {
+const App = () => {
 
-    constructor(props) {
-        super(props);
-        this.state = { 
-            theCats: [],
-            listCats: {},
-            listVotes: {},
-            tally: {
-                1: 0,
-                0: 0
-            }
-        };
-        this.updateVoteCount = this.updateVoteCount.bind(this);
-    }
+   const [theCats, setTheCats] = useState([]);
+   const [listCats, setListCats] = useState({});
+   const [listVotes, setListVotes] = useState({});
+   const [tally, setTally] = useState({1:0, 0:0});
+   const [oldKitty, setoldKitty] = useState([])
+            
     // get the total votes for Up or Down
-    getCute(cuteOrCrap) {
+    const getNice = (checkNice) => {
         let cute = 0;
-        for (let key in this.state.listVotes) {
+        for (let key in listVotes) {
             if (typeof key !== "undefined") {
-                if (this.state.listVotes[key].value === cuteOrCrap) {
+                if (listVotes[key].value === checkNice) {
                     cute++;
                 }
             }
@@ -34,68 +27,65 @@ class App extends Component {
         return cute;
     }
 
-    componentWillMount() {
+    useEffect(()=>{
         API.getCats().then(res => {
-            this.setState({ 
-                theCats : res.data,
-                listCats: res.data
+            setTheCats(res.data.cats)
+            setListCats(res.data.cats)
             });
-        });
-        API.getVotes().then(res => {
-            this.setState({
-                listVotes: res.data
-            });
-        }).then(() => {
-            let catList = Object.assign({}, this.state.listCats)
-            // loop the top level objects
-            for (let key in this.state.listVotes) {
-                // loop each key
-                for (let subkey in this.state.listVotes) {
-                    if (this.state.listVotes.hasOwnProperty(subkey)) {
-                        if (typeof this.state.listVotes[key].value !== 'undefined') {
-                            let id = this.state.listVotes[key].image_id;
-                            let vote = this.state.listVotes[key].value;
-                            for (let key in catList) {
-                                // eslint-disable-next-line
-                                for (let subkey in catList) {
-                                    if (catList[key].image_id === id) {
-                                        catList[key].value = vote;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            // set the state to new object with merged values
-            this.setState({ listCats : catList })
-            // create a new object for tally
-            let newTally = {
-                1: this.getCute(1),
-                0: this.getCute(0)
-            }
-            // set the tally to the new values
-            this.setState({ tally : newTally });
-        })
-    }
+        },[]);
+    //     API.getVotes().then(res => {
+    //         setListVotes(res.data)
+    //     }).then(() => {
+    //         let catList = Object.assign({}, listCats)
+    //         // loop the top level objects
+    //         for (let key in listVotes) {
+    //             // loop each key
+    //             for (let subkey in listVotes) {
+    //                 if (listVotes.hasOwnProperty(subkey)) {
+    //                     if (typeof listVotes[key].value !== 'undefined') {
+    //                         let id = listVotes[key].image_id;
+    //                         let vote = listVotes[key].value;
+    //                         for (let key in catList) {
+    //                             // eslint-disable-next-line
+    //                             for (let subkey in catList) {
+    //                                 if (catList[key].image_id === id) {
+    //                                     catList[key].value = vote;
+    //                                 }
+    //                             }
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         // set the state to new object with merged values
+    //         setListCats({ listCats : catList })
+    //         // create a new object for tally
+    //         let newTally = {
+    //             1: getNice(1),
+    //             0: getNice(0)
+    //         }
+    //         // set the tally to the new values
+    //         setTally(newTally);
+    //     })
+    // }
 
-    updateVoteCount(kitty, newValue) {
-        let oldKitty = this.state.theCats[kitty];
+   const updateVoteCount = (kitty, newValue)=>  {
+        let oldKitty = theCats[kitty];
         let oldKittyValue = oldKitty.value;
         let newKitty = oldKitty.value = newValue;
         if (oldKittyValue !== newValue) {
-            this.setState({oldKitty: newKitty})
+            setoldKitty(newKitty)
         }
-        console.log(this.state.theCats[kitty].value)
+        console.log(theCats[kitty].value)
     }
 
-    render() {
-        return <Switch>
-            <Route exact path="/" render={props => <Home {...props} list={this.state.theCats} tally={this.state.tally} />} />
-            <Route path="/rate" render={props => <Rate {...props} list={this.state.theCats} tally={this.state.tally} updateVoteCount={this.updateVoteCount} />} />
-            <Route path="/list" render={props => <List {...props} list={this.state.theCats} tally={this.state.tally} />} />
-          </Switch>;
-    }
-}
+        return (
+        <Switch>
+            <Route exact path="/" render={props => <Home {...props} list={theCats} tally={tally} />} />
+            <Route path="/rate" render={props => <Rate {...props} list={theCats} tally={tally} updateVoteCount={updateVoteCount} />} />
+            <Route path="/list" render={props => <List {...props} list={theCats} tally={tally} />} />
+          </Switch>
 
+        );
+        }
 export default App;
