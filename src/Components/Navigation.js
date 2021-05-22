@@ -5,7 +5,6 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
     NavLink,
@@ -15,14 +14,13 @@ const Navigation = (props) =>  {
     const [isOpen, setOpen] = useState(false);
     
     const toggle = () =>  {
-            setOpen(!isOpen)
+        setOpen(!isOpen)
       }
 
         return (
             <Row>
                 <Col>
                     <Navbar color="light" light expand="md">
-                        <NavbarBrand tag={Link} to="/"><img src={window.location.origin + '/cat-cute/images/logo.png'} alt="Cats website logo"/></NavbarBrand>
                         <NavbarToggler onClick={toggle} />
                         <Collapse isOpen={isOpen} navbar>
                             <Nav className="ml-auto" navbar>

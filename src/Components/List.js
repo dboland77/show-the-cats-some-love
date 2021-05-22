@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import Graph from './Graph';
 
-const  List = () =>  {
+const  List = (props) =>  {
 
     const hotOrNot = (vote) => {
         if (vote === 1) {
@@ -11,7 +11,7 @@ const  List = () =>  {
         }
     }
 
-        const kitties = this.props.list.map((cat) => {
+        const kitties = props.list.map((cat) => {
             return (
                 <ListGroupItem key={cat.image.id} color={hotOrNot(cat.value)} >
                     <img src={cat.image.url} alt={cat.image.id} style={{paddingRight: '20px', display: 'inline-block', maxWidth: '150px'}} />
@@ -21,7 +21,7 @@ const  List = () =>  {
         })
         return (
             <React.Fragment>
-                <Graph tally={this.props.tally} />
+                <Graph tally={props.tally} />
                 <Row>
                     <Col>
                         <ListGroup className="cat-list">

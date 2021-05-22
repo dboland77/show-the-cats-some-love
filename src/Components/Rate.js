@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Row, Col } from 'reactstrap';
 import Heading from './Heading';
 import Carousel from './Carousel';
 
-class Rate extends Component {
-    render() {
+const Rate = (props) => {
         return (
             <React.Fragment>
-                <Heading heading='Rate the kitties' />
+                <Heading heading='Rate the moggies' />
                 <Row>
                     <Col sm={12} >
-                        <Carousel list={this.props.list} tally={this.props.tally} updateVoteCount={this.props.updateVoteCount} />
+                        <Carousel 
+                        list={props.list} 
+                        tally={props.tally} 
+                        updateVoteCount={props.updateVoteCount} />
                     </Col>
                 </Row>
             </React.Fragment>
         );
-    }
 }
 
 export default Rate;
