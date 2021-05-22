@@ -16,15 +16,15 @@ const App = () => {
             
     // get the total votes for Up or Down
     const getNice = (checkNice) => {
-        let cute = 0;
+        let nice = 0;
         for (let key in listVotes) {
             if (typeof key !== "undefined") {
                 if (listVotes[key].value === checkNice) {
-                    cute++;
+                    nice++;
                 }
             }
         }
-        return cute;
+        return nice;
     }
 
     useEffect(()=>{

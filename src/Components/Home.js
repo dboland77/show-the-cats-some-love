@@ -12,13 +12,11 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Heading from "./Heading";
-import Graph from "./Graph";
 
 const Home = (props) => {
   return (
     <Fragment>
       <Heading heading="Nice Kitty or Not Nice Kitty?" />
-      <Graph tally={props.tally} />
       <Row>
         <Col>
           <p style={{ marginBottom: "24px" }}>
