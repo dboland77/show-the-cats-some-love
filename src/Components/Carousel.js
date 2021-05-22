@@ -94,7 +94,7 @@ const CatCarousel = (props) => {
           }}
           className={showVote(cat.value, 0)}
         >
-          Not Nice Moggy
+          Soggy
         </Button>
 
         <Button
@@ -114,7 +114,7 @@ const CatCarousel = (props) => {
           }}
           className={showVote(cat.value, 1)}
         >
-          Nice Moggy
+          Moggy
         </Button>
       </CarouselItem>
     );

@@ -8,7 +8,8 @@ const returnHeaders = () => {
     return (
         axios.defaults.headers = {
             'CONTENT-TYPE': 'APPLICATION/JSON',
-            'X-API-KEY': 'D70CED34-3597-4AA8-AD8C-2861CBE8452C'
+            'X-API-KEY': process.env.REACT_APP_API_KEY
+            
         }
     )
 }
