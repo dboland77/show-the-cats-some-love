@@ -3,7 +3,8 @@ import { Row, Col } from "reactstrap";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
 const List = (props) => {
-  const hotOrNot = (vote) => {
+
+  const niceOrNot = (vote) => {
     if (vote === 1) {
       return "success";
     }
@@ -11,7 +12,7 @@ const List = (props) => {
 
   const kitties = props.list.map((cat) => {
     return (
-      <ListGroupItem key={cat.image.id} color={hotOrNot(cat.value)}>
+      <ListGroupItem key={cat.image.id} color={niceOrNot(cat.value)}>
         <img
           src={cat.image.url}
           alt={cat.image.id}

@@ -44,8 +44,9 @@ const Home = (props) => {
               <CardSubtitle>Vote on pictures of cats</CardSubtitle>
               <CardText>
                 {" "}
-                The power to judge cats is now yours. Upload cats, vote on cats,
-                feline fine.
+                The power to judge cats is now yours.
+                Upload cats, vote on cats,
+                feline the power.
               </CardText>
               <Link to="/rate">
                 <Button color="primary">Vote Now</Button>

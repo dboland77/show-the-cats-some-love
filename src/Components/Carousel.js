@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Carousel, CarouselItem, Button } from "reactstrap";
-
-import * as API from "../Utilities/ApiGet";
+//import * as getAPI from "../Utilities/ApiGet";
+import * as postAPI from "../Utilities/ApiPost";
 
 const style = {
   position: "absolute",
@@ -51,7 +51,7 @@ const CatCarousel = (props) => {
     }
   };
 
-  const updateCute = (catValue, value) => {
+  const updateNice= (catValue, value) => {
     if (catValue !== value) {
       if (value === 1) {
         props.tally[1] = props.tally[1] + 1;
@@ -81,8 +81,8 @@ const CatCarousel = (props) => {
           color={"danger"}
           data-tag={individualCat}
           onClick={(event) => {
-            API.isCute(cat.image.id, cat.sub_id, "0");
-            updateCute(cat.value, 0);
+            postAPI.isNice(cat.image.id, cat.sub_id, "0");
+            updateNice(cat.value, 0);
             props.updateVoteCount(event.target.getAttribute("data-tag"), 0);
             next();
           }}
@@ -101,8 +101,8 @@ const CatCarousel = (props) => {
           color={"success"}
           data-tag={individualCat}
           onClick={(event) => {
-            API.isCute(cat.image.id, cat.sub_id, "1");
-            updateCute(cat.value, 1);
+            postAPI.isNice(cat.image.id, cat.sub_id, "1");
+            updateNice(cat.value, 1);
             props.updateVoteCount(event.target.getAttribute("data-tag"), 1);
             next();
           }}
